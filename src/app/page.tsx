@@ -1,101 +1,93 @@
-import Image from "next/image";
+import React from 'react';
 
-export default function Home() {
+const PollingSystemDescription = () => {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className=" min-h-screen bg-slate-900 text-slate-50 p-8">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-4xl font-bold text-center mb-6">Polling System Overview</h1>
+        <p className="text-xl mb-6">
+          A <b>Polling System </b> allows citizens and government to create and participate in surveys, collecting data on various topics in an efficient and structured way.
+        </p>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+        <div className="bg-slate-800 p-6 rounded-lg shadow-lg mb-8">
+          <h2 className="text-2xl font-semibold mb-4">Why Polling Systems Are Needed</h2>
+          <p className="text-lg">
+            Polling systems are used to gather feedback, opinions, and preferences from citizens. This data can be utilized by government to create effective policies.
+            <br /><br />
+            With the growth of online platforms, polls and surveys have become a crucial tool for measuring public opinion, customer satisfaction, and market trends. They help in capturing real-time data, which is vital for decision-making in various industries.
+          </p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        <div className="bg-slate-800 p-6 rounded-lg shadow-lg mb-8">
+          <h2 className="text-2xl font-semibold mb-4">How Does It Work?</h2>
+          <div className="text-lg">
+            The Polling System is structured around the following models:
+            <div className="list-disc pl-6 mt-4">
+              <li><strong>User</strong> - The creator of the poll and the participants who interact with it.</li>
+              <li><strong>Pool</strong> - A collection of questions that make up a single poll. It includes the title, description, and status.</li>
+              <li><strong>Question</strong> - A question in the poll that can have different types like multiple choice, text input, etc.</li>
+              <li><strong>Option</strong> - Multiple options associated with a question, allowing the user to choose answers.</li>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-slate-800 p-6 rounded-lg shadow-lg mb-8">
+          <h2 className="text-2xl font-semibold mb-4">Polling System Models (Prisma Schema)</h2>
+          <pre className="text-sm bg-slate-700 p-4 rounded-lg overflow-x-auto">
+            {`model User {
+  id        String   @id @default(uuid())
+  name      String   
+  email     String   @unique
+  password  String
+  role      Role
+  pools     Pool[] 
+  createdAt DateTime @default(now())
+}
+
+model Pool {
+  id          String   @id @default(uuid())
+  subCategory String   @default("")
+  title       String
+  description String?
+  creatorId   String
+  creator     User     @relation(fields: [creatorId], references: [id])
+  status      PoolStatus @default(PENDING)
+  questions   Question[] 
+  createdAt   DateTime @default(now())
+}
+
+model Question {
+  id          String   @id @default(uuid())
+  text        String
+  type        QuestionType
+  poolId      String
+  pool        Pool     @relation(fields: [poolId], references: [id])
+  status      QuestionStatus @default(PENDING)
+  options     Option[] 
+}
+
+model Option {
+  id         String @id @default(uuid())
+  text       String
+  questionId String
+  question   Question @relation(fields: [questionId], references: [id])
+}`}
+          </pre>
+        </div>
+
+        <div className="bg-slate-800 p-6 rounded-lg shadow-lg mb-8">
+          <h2 className="text-2xl font-semibold mb-4">Benefits of Polling Systems</h2>
+          <div className="list-disc pl-6">
+            <li>Efficient way to gather feedback from large groups of people.</li>
+            <li>Helps make data-driven decisions.</li>
+            <li>Supports various question types (multiple choice, text input, etc.) for detailed analysis.</li>
+            <li>Provides real-time data collection and results.</li>
+            <li>Ensures transparency and clarity in understanding user opinions.</li>
+          </div>
+        </div>
+      </div>
     </div>
   );
-}
+};
+
+export default PollingSystemDescription;
