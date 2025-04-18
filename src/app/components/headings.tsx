@@ -6,18 +6,30 @@ import Image from "next/image";
 
 export const NavigationBar = () => {
 //  On the basis of JWT token this is set as true or false
-  const isAdmin = false;
-  const isValid = false;
+  const isAdmin = true;
+  const isValid = true;
   const router= useRouter()
 
   const routeToHome= () =>
   {
     router.push('/')
   }
+  const checkRole=()=>
+  {
+    if(isAdmin)
+    {
+      return(
+        "Admin"
+      )
+    }else if(isValid){
+      return("Valid User")
+    }else{
+      return("Unverified User")
+    }
+  }
   return (
     <nav className="fixed w-screen  bg-slate-800/35 backdrop-blur-sm p-4  shadow-lg">
       <div className="container md:px-6 lg:px-8 mx-auto flex justify-between items-center">
-        
         <button  onClick={routeToHome} className="text-white flex flex-col items-center font-bold">
         <Image src="/Images/government_image.png"
         alt="Government of Nepal Image"
@@ -28,6 +40,11 @@ export const NavigationBar = () => {
         </Image>
             Polling System
         </button>
+        
+        <span>
+          {checkRole()}  
+        </span>
+        
         <div className="flex space-x-4">
           {(isValid || isAdmin) && (
             <Link href="/user-profile" className="text-white hover:underline">

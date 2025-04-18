@@ -34,12 +34,15 @@ model Pool {
   subCategory String   @default("")
   title       String
   description String?
+  submissions    Submission[] // ✅ Added
   creatorId   String
   creator     User     @relation(fields: [creatorId], references: [id])
   status      PoolStatus @default(PENDING)
   questions   Question[] 
   createdAt   DateTime @default(now())
 }
+
+
 
 enum PoolStatus {
   PENDING
@@ -55,6 +58,14 @@ model Question {
   pool        Pool     @relation(fields: [poolId], references: [id])
   status      QuestionStatus @default(PENDING)
   options     Option[]
+}
+
+model Submission {
+  id             String   @id @default(uuid())
+  poolId         String
+  pool           Pool     @relation(fields: [poolId], references: [id])
+  submissionData Json     // ✅ Dynamic answers stored here
+  submittedAt    DateTime @default(now())
 }
 
 enum QuestionType {
