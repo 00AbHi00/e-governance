@@ -76,9 +76,7 @@ export const Login = () => {
           />
           {error && <div className="text-red-400 text-center mb-3">{error}</div>}
         </div>
-        <div className="group text-center  p-2 text-xl">
-            <Link  href={"/create-account"}> Don't have an Account, click here to <span className="group-hover:text-blue-600"> create Account </span> </Link>
-        </div>
+       
       </form>
     </div>
   );

@@ -5,9 +5,8 @@ import Image from "next/image";
 
 
 export const NavigationBar = () => {
-//  On the basis of JWT token this is set as true or false
-  const isAdmin = true;
-  const isValid = true;
+const isAdmin = false;
+  const isValid = false;
   const router= useRouter()
 
   const routeToHome= () =>
